@@ -15,12 +15,16 @@ insert into job(title,category,amount,type,level,deadline,description,company_na
 values ('Android dev','Android',3,'fulltime','senior','2022-10-10','ada','hybrid',123000,'Hanoi','available','2022-10-01',1);
 
 insert into apply(candidate_id,job_id,status,apply_date)
-values (1,1,'Accepted','2022-10-05');
+values (1,1,'','2022-10-05');
 insert into apply(candidate_id,job_id,status,apply_date)
-values (1,2,'Rejected','2022-10-01');
+values (1,2,'','2022-10-01');
 insert into apply(candidate_id,job_id,status,apply_date)
-values (2,1,'Accepted','2022-09-19');
+values (2,1,'','2022-09-19');
 insert into apply(candidate_id,job_id,status,apply_date)
-values (3,2,'Accepted','2022-09-19');
+values (2,2,'','2022-09-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,2,'','2022-09-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,1,'','2022-09-25');
 
 

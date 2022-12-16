@@ -9,12 +9,17 @@
         <el-input placeholder="Search student" v-model="search" @keyup.enter.native="searchFunc(search)"></el-input>
       </div>
       <div style="display: inline-block" class="option">
-        <el-select v-model="value" filterable placeholder="Select">
+        <el-select v-model="value"
+                   filterable
+                   placeholder="Select"
+                   @change="select"
+        >
           <el-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
-              :value="item.value">
+              :value="item.value"
+              >
           </el-option>
         </el-select>
       </div>
@@ -48,40 +53,9 @@
             >
         </el-table-column>
 
-
       </el-table>
-<!--      <el-pagination class="pagination"-->
-<!--                     v-model="tableData"-->
-<!--                     :current-page.sync="currentPage"-->
-<!--                     background-->
-<!--                     layout="prev, pager, next"-->
-<!--                     :page-size="size"-->
-<!--                     :total="totalElement">-->
-<!--      </el-pagination>-->
     </div>
 
-<!--    <div>-->
-<!--      <el-dialog title="Apply information" :model="form" :visible.sync="dialogEditFormVisible" >-->
-<!--        <el-form>-->
-<!--          <el-form-item label="Candidate" :label-width="formLabelWidth">-->
-<!--            <el-input v-model="form.name" autocomplete="off"></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="Job" :label-width="formLabelWidth">-->
-<!--            <el-input v-model="form.title" autocomplete="off"></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="Date apply" :label-width="formLabelWidth">-->
-<!--            <el-input v-model="form.dateApply" autocomplete="off"></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item label="Status" :label-width="formLabelWidth">-->
-<!--            <el-input v-model="form.statusApply" autocomplete="off"></el-input>-->
-<!--          </el-form-item>-->
-<!--        </el-form>-->
-<!--        <div slot="footer" class="dialog-footer">-->
-<!--          <el-button @click="resetForm">Cancel</el-button>-->
-<!--          <el-button type="primary" @click="save">Save</el-button>-->
-<!--        </div>-->
-<!--      </el-dialog>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -128,9 +102,6 @@ export default {
         this.loadData();
       }
     },
-    // currentPage() {
-    //   this.clickPagination(this.currentPage-1);
-    // }
 
   },
   methods: {
@@ -144,7 +115,7 @@ export default {
     },
     loadData() {
       this.loading = true;
-      axios.get('http://localhost:8080/applies/bydate')
+      axios.get('http://localhost:8080/applies/has-status')
           .then((response) => {
             console.log('response.data',response.data.data)
             this.tableData = response.data.data;
@@ -154,66 +125,17 @@ export default {
             this.error.push(e);
           })
     },
-    // clickPagination(pageNum) {
-    //   axios.get('http://localhost:8080/students/?page=' + pageNum)
-    //       .then((response) => {
-    //         this.tableData = response.data.content;
-    //         this.loading = false;
-    //       })
-    //       .catch((e) => {
-    //         this.error.push(e);
-    //       })
-    //
-    // },
-    // deleteStudent(index, row) {
-    //   console.log("xoa id", row.id)
-    //   axios.delete('http://localhost:8080/students/' + row.id)
-    //   this.tableData.splice(index, 1)
-    // },
-    // save() {
-    //   this.dialogEditFormVisible = true
-    //   console.log("data to save: ", this.form);
-    //   let url = this.form.id ? 'http://localhost:8080/students/edit/' + this.form.id  : 'http://localhost:8080/students/add' ;
-    //   console.log("id nay",this.form.id)
-    //   axios.post(url, this.form)
-    //       .then(() => this.loadData());
-    //   this.resetForm();
-    // },
-    // searchFunc(keyword) {
-    //   axios.get('http://localhost:8080/students/student/?search=' + keyword)
-    //       .then((response) => {
-    //         console.log(response.data)
-    //         this.tableData = response.data.content;
-    //       })
-    //       .catch((e) => {
-    //         this.error.push(e);
-    //       })
-    //
-    // },
-    // add(){
-    //   this.resetForm();
-    //   this.dialogEditFormVisible = true;
-    // },
-    // resetForm() {
-    //   this.dialogEditFormVisible = false;
-    //   this.form = {
-    //     id: "",
-    //     name: "",
-    //     information: "",
-    //     grade: "",
-    //   }
-    // },
-    // showDetail(data) {
-    //   console.log("data detail: ", data);
-    //   this.dialogEditFormVisible = true;
-    //   this.form = {
-    //     id: data.id,
-    //     name: data.name,
-    //     information: data.information,
-    //     grade: data.grade
-    //   }
-    //   console.log("id o day",this.form.id)
-    // },
+    select() {
+      axios.get('http://localhost:8080/applies/search?status='+this.value)
+          .then((response) => {
+            console.log('response.data',response.data.data)
+            this.tableData = response.data.data;
+            this.loading = false;
+          })
+          .catch((e) => {
+            this.error.push(e);
+          })
+    }
 
   },
 }
@@ -233,7 +155,7 @@ export default {
 }
 
 .option {
-  padding-left: 500px;
+  padding-left: 1000px;
 }
 
 .accept {

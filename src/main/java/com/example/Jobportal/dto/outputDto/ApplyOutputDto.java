@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class ApplyOutputDto {
+    private Long id;
     private String name;
     private String title;
     private LocalDate applyDate;

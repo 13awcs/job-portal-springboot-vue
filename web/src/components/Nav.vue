@@ -3,17 +3,26 @@
     <div>
       <nav class="navbar navbar-expand navbar-light fixed-top nav">
         <div class="container header-nav">
-          <a href="/" class="navbar-brand" :class="currentPath === '/' ? 'active' : ''">Home</a>
-          <a href="/job" class="navbar-brand" :class="currentPath === '/job' ? 'active' : ''">Jobs</a>
+          <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"
+             href="/home" class="navbar-brand" :class="currentPath === '/home' ? 'active' : ''">Home</a>
+          <div class="pad">
+            <el-badge :value="numberRows" class="item">
+              <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"
+                 href="/job" class="navbar-brand" :class="currentPath === '/job' ? 'active' : ''">Jobs</a>
+            </el-badge>
+          </div>
+
+
+
+<!--          <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"-->
+<!--             href="/profile" class="navbar-brand" :class="currentPath === '/profile' ? 'active' : ''">Profile</a>-->
           <div class="collapse navbar-collapse" style="justify-content: end;">
             <u class="navbar-nav ml-auto login-signup">
               <li class="nav-item">
-                <a href="/login" class="nav-link" :class="currentPath === '/login' ? 'active' : ''">Login</a>
-              </li>
-              <li class="nav-item">
-                <a href="/sign-up"
-                   class="nav-link"
-                   :class="currentPath === '/sign-up' ? 'active' : ''">Sign up</a>
+                <a v-if="(currentPath === '/' || '/login') && currentPath !== '/home' && currentPath !== '/job'"
+                   href="/login" class="nav-link" :class="currentPath === '/login' ? 'active' : ''">Login</a>
+                <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"
+                   href="/login" class="nav-link" :class="currentPath === '/log-out' ? 'active' : ''">Logout</a>
               </li>
             </u>
           </div>
@@ -31,8 +40,11 @@ export default {
   computed: {
     currentPath() {
       return this.$route.path;
+    },
+    numberRows() {
+      return this.$store.state.numberTableRows;
     }
-  }
+  },
 }
 </script>
 
@@ -42,5 +54,9 @@ export default {
 }
 .nav {
   background: #e7e7e7;
+}
+
+.pad {
+  padding-left: 30px;
 }
 </style>

@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       validCredentials: {
-        username: "bac123",
-        password: "123456"
+        username: "test",
+        password: "123a"
       },
       model: {
         username: "",
@@ -59,16 +59,16 @@ export default {
             trigger: "blur"
           },
           {
-            min: 4,
-            message: "Username length should be at least 5 characters",
+            min: 3,
+            message: "Username length should be at least 3 characters",
             trigger: "blur"
           }
         ],
         password: [
           { required: true, message: "Password is required", trigger: "blur" },
           {
-            min: 5,
-            message: "Password length should be at least 5 characters",
+            min: 3,
+            message: "Password length should be at least 3 characters",
             trigger: "blur"
           }
         ]
@@ -94,8 +94,10 @@ export default {
           this.model.password === this.validCredentials.password
       ) {
         //this.$message.success("Login successfull");
-        this.path = '/'
+        this.path =''
+        this.path = '/home'
         this.$router.push(this.path)
+
       } else {
         this.$message.error("Username or password is invalid");
       }
