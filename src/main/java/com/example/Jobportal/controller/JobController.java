@@ -9,6 +9,7 @@ import com.example.Jobportal.model.Job;
 import com.example.Jobportal.repository.JobRepository;
 import com.example.Jobportal.service.JobService;
 import com.example.Jobportal.service.serviceImpl.JobServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +19,15 @@ import java.util.List;
 import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
+@RequiredArgsConstructor
 public class JobController{
 
-    @Autowired
-    JobService jobService;
+    private final JobService jobService;
 
-    @Autowired
-    JobRepository jobRepository;
+    private final JobRepository jobRepository;
 
-//    @GetMapping("/jobs")
-//    public ResponseEntity<List<JobOutputDto>> getAllJobs(){
-//        return ResponseEntity.status(HttpStatus.OK).body(jobService.sortJobByDate());
-//
-//    }
+    private final JobServiceImpl jobServiceImpl;
+
     @GetMapping("/jobs/recruiter/{id}")
     public List<JobOutputDto> getAllJobsByRecruiterId(@PathVariable Long id){
         return jobService.sortJobByDate(id);
@@ -62,6 +59,11 @@ public class JobController{
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(jobService.getDetailJob(id));
+    }
+
+    @GetMapping("/jobs/job-by-apply-id/{applyId}")
+    public ResponseEntity<ResponseObject> getJobByApplyId(@PathVariable Long applyId){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(jobServiceImpl.getJobByApplyId(applyId)));
     }
 
 }

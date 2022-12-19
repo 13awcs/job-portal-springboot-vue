@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ApplyRepository extends JpaRepository<Apply, CompositeKey> {
+public interface ApplyRepository extends JpaRepository<Apply, Long> {
 
     @Query(value = "select count(a.candidate_id) from apply a where a.job_id = :id ",nativeQuery = true)
     int countApply(Long id);

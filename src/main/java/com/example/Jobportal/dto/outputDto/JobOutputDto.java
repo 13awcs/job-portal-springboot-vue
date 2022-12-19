@@ -1,12 +1,9 @@
 package com.example.Jobportal.dto.outputDto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.example.Jobportal.model.Job;
+import lombok.*;
 
 import java.time.LocalDate;
-
 @Data
 @Setter
 @Getter

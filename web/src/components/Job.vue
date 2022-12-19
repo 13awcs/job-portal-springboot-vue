@@ -12,7 +12,7 @@
 
       <el-table
           :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.title.toLowerCase().includes(search.toLowerCase()))"
-          style="width: 100%">
+          style="width: 120%">
 
         <el-table-column
             label="Candidate"
@@ -23,7 +23,7 @@
             prop="title">
         </el-table-column>
         <el-table-column
-            label="Date apply"
+            label="Apply date"
             prop="applyDate">
         </el-table-column>
         <el-table-column

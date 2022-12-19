@@ -42,7 +42,7 @@
             prop="title">
         </el-table-column>
         <el-table-column
-            label="Date apply"
+            label="Apply date"
             prop="applyDate">
         </el-table-column>
         <el-table-column
@@ -68,6 +68,7 @@ export default {
       status: '',
       currentPage: 0,
       loading: false,
+      valueBadge:[],
       tableData: [],
       options: [{
         value: 'Accepted',
@@ -92,9 +93,12 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: '120px'
     }
+
   },
   created() {
+    this.countValueBadge();
     this.loadData();
+
   },
   watch: {
     search() {
@@ -102,6 +106,8 @@ export default {
         this.loadData();
       }
     },
+
+
 
   },
   methods: {
@@ -125,6 +131,19 @@ export default {
             this.error.push(e);
           })
     },
+    countValueBadge() {
+      this.loading = true;
+      axios.get('http://localhost:8080/applies/has-no-status')
+          .then((response) => {
+            console.log('response.data',response.data.data)
+            this.valueBadge = response.data.data;
+            this.$store.dispatch("updateNumberRow", this.valueBadge.length)
+            this.loading = false;
+          })
+          .catch((e) => {
+            this.error.push(e);
+          })
+    },
     select() {
       axios.get('http://localhost:8080/applies/search?status='+this.value)
           .then((response) => {
@@ -135,6 +154,9 @@ export default {
           .catch((e) => {
             this.error.push(e);
           })
+    },
+    showInfo(row,column) {
+      console.log("haha",row,column)
     }
 
   },

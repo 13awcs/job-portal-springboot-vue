@@ -4,6 +4,7 @@ import HomePage from "@/components/HomePage";
 import Login from "@/components/Login";
 import Profile from "@/components/Profile";
 import Job from "@/components/Job";
+import Recruiter from "@/components/Recruiter";
 
 Vue.use(Router)
 
@@ -14,5 +15,6 @@ export default new Router ({
         {path: '/home',name : ':HomePage', component: HomePage},
         {path: '/job',name : ':Job', component: Job},
         {path: '/profile',name : ':Profile', component: Profile},
+        {path: '/recruiter',name : ':Recruiter', component: Recruiter},
     ]
 })

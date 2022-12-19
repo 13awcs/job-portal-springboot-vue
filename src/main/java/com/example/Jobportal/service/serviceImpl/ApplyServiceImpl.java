@@ -5,6 +5,7 @@ import com.example.Jobportal.model.Apply;
 import com.example.Jobportal.repository.ApplyRepository;
 import com.example.Jobportal.service.ApplyService;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +16,12 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class ApplyServiceImpl implements ApplyService {
 
 
-    @Autowired
-    private ApplyRepository applyRepository;
+
+    private final ApplyRepository applyRepository;
 
     public List<ApplyOutputDto> getApplyHasStatusByDate() {
         List<ApplyOutputDto> applyOutputDtos = new ArrayList<>();

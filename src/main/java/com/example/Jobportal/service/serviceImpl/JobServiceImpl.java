@@ -4,13 +4,18 @@ import com.example.Jobportal.common.exceptions.ResourceNotFoundException;
 import com.example.Jobportal.dto.Mapping.JobMapping;
 import com.example.Jobportal.dto.inputDto.JobEditDto;
 import com.example.Jobportal.dto.inputDto.JobInputDto;
+import com.example.Jobportal.dto.outputDto.CandidateOutputDto;
 import com.example.Jobportal.dto.outputDto.JobOutputDto;
+import com.example.Jobportal.dto.outputDto.JobResponse;
+import com.example.Jobportal.model.Apply;
+import com.example.Jobportal.model.Candidate;
 import com.example.Jobportal.model.Job;
 import com.example.Jobportal.model.Recruiter;
 import com.example.Jobportal.repository.ApplyRepository;
 import com.example.Jobportal.repository.JobRepository;
 import com.example.Jobportal.repository.RecruiterRepository;
 import com.example.Jobportal.service.JobService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +25,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class JobServiceImpl implements JobService {
 
-    @Autowired
-    JobRepository jobRepository;
-
-    @Autowired
-    RecruiterRepository recruiterRepository;
-
-    @Autowired
-    ApplyRepository applyRepository;
+    private final JobRepository jobRepository;
+    private final RecruiterRepository recruiterRepository;
+    private final ApplyRepository applyRepository;
 
     @Override
     public Job createJob(JobInputDto jobInputDto) {
@@ -65,27 +66,6 @@ public class JobServiceImpl implements JobService {
 
         return jobRepository.save(jobEdit);
     }
-//    public Job editJob(Long id, Job job) {
-//
-//        Job jobFromDB = jobRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Not found job id "+id));
-//        jobFromDB.setTitle(job.getTitle());
-//        jobFromDB.setCategory(job.getCategory());
-//        jobFromDB.setAmount(job.getAmount());
-//        jobFromDB.setType(job.getType());
-//        jobFromDB.setLevel(job.getLevel());
-//        jobFromDB.setDeadline(job.getDeadline());
-//        jobFromDB.setDescription(job.getDescription());
-//        jobFromDB.setCompanyName(job.getCompanyName());
-//        jobFromDB.setSalary(job.getSalary());
-//        jobFromDB.setLocation(job.getLocation());
-//        jobFromDB.setStatus(job.getStatus());
-//        jobFromDB.setCreateAt(job.getCreateAt());
-//        jobFromDB.setRecruiter(job.getRecruiter());
-//        jobFromDB.setId(id);
-//
-//        //return JobMapping.jobInputToOutput(jobRepository.save(job));
-//        return jobRepository.save(jobFromDB);
-//    }
 
     @Override
     public String deleteJob(Long id) {
@@ -122,11 +102,12 @@ public class JobServiceImpl implements JobService {
     @Override
     public Job getDetailJob(Long id) {
         Job job = jobRepository.findById(id).orElseThrow();
-//        JobOutputDto jobOutputDto = JobMapping.jobInputToOutput(job);
-//
-//        int applyAmount = applyRepository.countApply(job.getId());
-//        jobOutputDto.setApplyAmount(applyAmount);
-
         return job;
+    }
+
+    public JobResponse getJobByApplyId(Long applyId) {
+        Apply apply = applyRepository.findById(applyId).orElseThrow();
+        Job job = apply.getJobApply();
+        return JobResponse.fromEntity(job);
     }
 }
