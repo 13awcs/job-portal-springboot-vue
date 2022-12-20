@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CandidateServiceImpl {
     private final ApplyRepository applyRepository;
 
-    public CandidateOutputDto getCandidateProfileByApplyId(Long applyId) {
+    public CandidateOutputDto getCandidateByApplyId(Long applyId) {
         Apply apply = applyRepository.findById(applyId).orElseThrow();
         Candidate candidate = apply.getCandidateApply();
         return CandidateOutputDto.fromEntity(candidate);

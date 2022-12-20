@@ -40,8 +40,8 @@ public class CandidateController {
         return ResponseEntity.status(HttpStatus.OK).body(candidateRepository.searchCandidate(keyword));
     }
 
-    @GetMapping("/candidate-by-apply-id/{applyId}")
+    @GetMapping("candidates/candidate-by-apply-id/{applyId}")
     public ResponseEntity<ResponseObject> getCandidateProfileByApplyId(@PathVariable Long applyId){
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(candidateService.getCandidateProfileByApplyId(applyId)));
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(candidateService.getCandidateByApplyId(applyId)));
     }
 }

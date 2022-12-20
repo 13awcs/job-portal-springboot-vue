@@ -6,23 +6,17 @@
           <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"
              :class="currentPath === '/home' ? 'active' : ''" class="navbar-brand" href="/home">Home</a>
 
-
           <div class="pad">
             <el-badge :value="numberRows !== 0 && numberRows" class="item">
               <a v-if="(currentPath === '/home' || '/job') && currentPath !== '/' && currentPath !== '/login'"
                  :class="currentPath === '/job' ? 'active' : ''" class="navbar-brand" href="/job">Jobs</a>
             </el-badge>
-
-
           </div>
-
-          <a v-if="(currentPath === '/home' || '/job' || '/recruiter') && currentPath !== '/' && currentPath !== '/login'"
-             :class="currentPath === '/recruiter' ? 'active' : ''" class="navbar-brand" href="/recruiter">Recruiter</a>
-
           <div class="collapse navbar-collapse" style="justify-content: end;">
             <u class="navbar-nav ml-auto login-signup">
               <li class="nav-item">
-                <a v-if="(currentPath === '/' || '/login') && currentPath !== '/home' && currentPath !== '/job' && currentPath !== '/recruiter'"
+                <a v-if="(currentPath === '/' || '/login') && currentPath !== '/home' && currentPath !== '/job' && currentPath !== '/recruiter'
+                    && currentPath !== '/candidate'"
                    :class=" hideBadge == true && currentPath === '/login' ? 'active' : ''" class="nav-link"
                    href="/login">Login</a>
                 <a v-if="(currentPath === '/home' || '/job' || '/recruiter') && currentPath !== '/' && currentPath !== '/login'"

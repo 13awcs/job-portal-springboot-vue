@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       validCredentials: {
-        username: "test",
+        username: "admin",
         password: "123a"
       },
       model: {

@@ -1,5 +1,6 @@
 package com.example.Jobportal.dto.outputDto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,8 @@ public class ApplyOutputDto {
     private Long id;
     private String name;
     private String title;
+
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate applyDate;
     private String status;
 }
