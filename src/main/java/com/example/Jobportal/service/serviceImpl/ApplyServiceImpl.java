@@ -23,10 +23,10 @@ public class ApplyServiceImpl implements ApplyService {
 
     private final ApplyRepository applyRepository;
 
-    public List<ApplyOutputDto> getApplyHasStatusByDate() {
+    public List<ApplyOutputDto> getApplyHasStatusByRecruiterIdAndSortByDate(Long recruiterId) {
         List<ApplyOutputDto> applyOutputDtos = new ArrayList<>();
 
-        List<Apply> applies = applyRepository.getNewestApply();
+        List<Apply> applies = applyRepository.getApplyHasStatusByRecruiterIdAndSortByDate(recruiterId);
 
         for (Apply apply : applies) {
             Long id = apply.getId();
@@ -48,10 +48,10 @@ public class ApplyServiceImpl implements ApplyService {
         return applyOutputDtos;
     }
 
-    public List<ApplyOutputDto> getApplyHasNoStatusByDate() {
+    public List<ApplyOutputDto> getApplyHasNoStatusAndRecruiterIdAndSortByDate(Long recruierId) {
         List<ApplyOutputDto> applyOutputDtos = new ArrayList<>();
 
-        List<Apply> applies = applyRepository.getNewestApplyHasNoStatus();
+        List<Apply> applies = applyRepository.getApplyHasNoStatusByRecruiterIdAndSortByDate(recruierId);
 
         for (Apply apply : applies) {
             Long id = apply.getId();

@@ -22,6 +22,12 @@ public interface ApplyRepository extends JpaRepository<Apply, Long> {
     @Query(value = "select * from apply p where p.status = '' order by p.apply_date DESC ",nativeQuery = true)
     List<Apply> getNewestApplyHasNoStatus();
 
+    @Query(value = "SELECT A.ID,A.CANDIDATE_ID,A.JOB_ID,A.APPLY_DATE,A.STATUS FROM APPLY A JOIN JOB J ON A.JOB_ID = J.ID WHERE J.RECRUITER_ID = :recruiterId AND A.STATUS = '' ORDER BY A.APPLY_DATE DESC",nativeQuery = true)
+    List<Apply> getApplyHasNoStatusByRecruiterIdAndSortByDate(Long recruiterId);
+
+    @Query(value = "SELECT A.ID,A.CANDIDATE_ID,A.JOB_ID,A.APPLY_DATE,A.STATUS FROM APPLY A JOIN JOB J ON A.JOB_ID = J.ID WHERE J.RECRUITER_ID = :recruiterId AND A.STATUS != '' ORDER BY A.APPLY_DATE DESC",nativeQuery = true)
+    List<Apply> getApplyHasStatusByRecruiterIdAndSortByDate(Long recruiterId);
+
     @Query(value = "select * from apply p where p.status like :status", nativeQuery = true)
     List<Apply> searchApplyByStatus(String status);
 

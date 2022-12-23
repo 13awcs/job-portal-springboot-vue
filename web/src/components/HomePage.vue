@@ -213,7 +213,8 @@ export default {
     },
     loadData() {
       this.loading = true;
-      axios.get('http://localhost:8080/applies/has-status')
+      console.log('recruiterId: ',this.$store.state.recruiterId)
+      axios.get('http://localhost:8080/applies/has-status/'+this.$store.state.recruiterId)
           .then((response) => {
             console.log('response.data', response.data.data)
             this.tableData = response.data.data;
@@ -225,7 +226,7 @@ export default {
     },
     countValueBadge() {
       this.loading = true;
-      axios.get('http://localhost:8080/applies/has-no-status')
+      axios.get('http://localhost:8080/applies/has-no-status/'+this.$store.state.recruiterId)
           .then((response) => {
             console.log('response.data', response.data.data)
             this.valueBadge = response.data.data;

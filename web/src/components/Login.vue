@@ -38,17 +38,21 @@
 
 <script>
 import router from 'vue-router'
+import axios from "axios";
 export default {
   path: '',
   data() {
     return {
+      message: '',
       validCredentials: {
-        username: "admin",
-        password: "123a"
+        id: '',
+        role: '',
+        username: '',
+        password: ''
       },
       model: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       },
       loading: false,
       rules: {
@@ -82,25 +86,33 @@ export default {
       });
     },
     async login() {
-      let valid = await this.$refs.form.validate();
-      if (!valid) {
-        return;
-      }
-      this.loading = true;
-      await this.simulateLogin();
-      this.loading = false;
-      if (
-          this.model.username === this.validCredentials.username &&
-          this.model.password === this.validCredentials.password
-      ) {
-        //this.$message.success("Login successfull");
-        this.path =''
-        this.path = '/home'
-        this.$router.push(this.path)
+      // let valid = await this.$refs.form.validate();
+      // if (!valid) {
+      //   return;
+      // }
+      // this.loading = true;
+      // await this.simulateLogin();
+      // this.loading = false;
+      axios.post('http://localhost:8080/login',this.model)
+      .then((response) => {
+        this.validCredentials = response.data.data
+        this.$store.dispatch("updateRecruiterId",this.validCredentials.id)
+        this.message = response.data.message
+        if(this.message === 'Login successfully !'){
+          if(this.validCredentials.role==='recruiter'){
+            this.path =''
+            this.path = '/home'
+            this.$router.push(this.path)
+          }
+          else if(this.validCredentials.role==='admin') {
+            this.path = '/admin/home'
+            this.$router.push(this.path)
+          }
+        } else if (this.message === 'Username or password is wrong !') {
+          this.$message.error("Username or password is wrong !");
+        }
 
-      } else {
-        this.$message.error("Username or password is invalid");
-      }
+      })
     }
   }
 };

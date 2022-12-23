@@ -20,7 +20,9 @@
                    :class=" hideBadge == true && currentPath === '/login' ? 'active' : ''" class="nav-link"
                    href="/login">Login</a>
                 <a v-if="(currentPath === '/home' || '/job' || '/recruiter') && currentPath !== '/' && currentPath !== '/login'"
-                   :class="currentPath === '/log-out' ? 'active' : ''" class="nav-link" href="/login">Logout</a>
+                   :class="hideBadge == true && currentPath === '/log-out' ? 'active' : ''" class="nav-link " style="cursor: pointer" @click="logOut">
+                  Logout
+                </a>
               </li>
             </u>
           </div>
@@ -37,6 +39,7 @@ export default {
   components: {},
   data() {
     return {
+      path: '',
       disable: 'false'
     }
   },
@@ -52,10 +55,20 @@ export default {
     numberRows() {
       return this.$store.state.numberTableRows;
     },
+  },
+  methods:{
+    logOut() {
+      this.hideBadge();
+      localStorage.removeItem('vuex');
+      this.$router.push('/login');
+    },
     hideBadge() {
       return this.$store.state.numberTableRows = 0;
-    }
+    },
   },
+  beforeDestroy() {
+    localStorage.removeItem('vuex');
+  }
 }
 </script>
 

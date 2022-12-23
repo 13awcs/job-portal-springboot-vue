@@ -61,6 +61,9 @@ public class Job {
     @Column(name = "create_at")
     private LocalDate createAt;
 
+    @Column(name = "active")
+    private Boolean active;
+
     @ManyToOne
     @JsonManagedReference
     @JoinColumn(name = "recruiter_id")

@@ -66,4 +66,9 @@ public class JobController{
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(jobServiceImpl.getJobByApplyId(applyId)));
     }
 
+    @PostMapping("/jobs/set-active/{id}/{active}")
+    public ResponseEntity<ResponseObject> setActive(@PathVariable Long id,@PathVariable Boolean active){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(jobServiceImpl.setActive(id,active)));
+    }
+
 }

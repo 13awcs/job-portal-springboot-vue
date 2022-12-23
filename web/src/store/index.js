@@ -6,22 +6,22 @@ import VuexPersistence from 'vuex-persist'
 export default new Vuex.Store({
     state: {
         numberTableRows: 0,
-        rowId: 0
+        recruiterId: '',
     },
     mutations: {
         updateNumberRow(state, data) {
             state.numberTableRows = data;
         },
-        updateRowId(state,date) {
-            state.rowId = data;
+        updateRecruiterId(state,data) {
+            state.recruiterId = data;
         }
     },
     actions: {
         updateNumberRow(context, data) {
             context.commit("updateNumberRow", data);
         },
-        updateRowId(context,data) {
-            context.commit("updateRowId",data);
+        updateRecruiterId(context,data) {
+            context.commit("updateRecruiterId",data);
         }
     },
     plugins: [new VuexPersistence().plugin]

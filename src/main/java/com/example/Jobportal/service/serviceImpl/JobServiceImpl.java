@@ -110,4 +110,10 @@ public class JobServiceImpl implements JobService {
         Job job = apply.getJobApply();
         return JobResponse.fromEntity(job);
     }
+
+    @Transactional
+    public String setActive(Long id,Boolean active){
+        jobRepository.setActive(id,active);
+        return "Set active successfully";
+    }
 }

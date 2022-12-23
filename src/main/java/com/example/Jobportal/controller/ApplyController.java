@@ -40,14 +40,14 @@ public class ApplyController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyList));
     }
 
-    @GetMapping("/applies/has-status")
-    public ResponseEntity<ResponseObject> getApplyHasStatusByDate(){
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyService.getApplyHasStatusByDate()));
+    @GetMapping("/applies/has-status/{recruiterId}")
+    public ResponseEntity<ResponseObject> getApplyHasStatusByRecruiterIdAndSortByDate(@PathVariable Long recruiterId){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyService.getApplyHasStatusByRecruiterIdAndSortByDate(recruiterId)));
     }
 
-    @GetMapping("/applies/has-no-status")
-    public ResponseEntity<ResponseObject> getApplyHasNoStatusByDate(){
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyService.getApplyHasNoStatusByDate()));
+    @GetMapping("/applies/has-no-status/{recruiterId}")
+    public ResponseEntity<ResponseObject> getApplyHasNoStatusByDate(@PathVariable Long recruiterId){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyService.getApplyHasNoStatusAndRecruiterIdAndSortByDate(recruiterId)));
     }
 
     @PostMapping("/applies/edit/{id}")

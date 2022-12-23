@@ -185,7 +185,7 @@ export default {
   methods: {
     loadData() {
       this.loading = true;
-      axios.get('http://localhost:8080/applies/has-no-status')
+      axios.get('http://localhost:8080/applies/has-no-status/'+this.$store.state.recruiterId)
           .then((response) => {
             console.log('response.data',response.data.data)
             this.tableData = response.data.data;

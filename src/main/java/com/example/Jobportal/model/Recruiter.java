@@ -46,6 +46,9 @@ public class Recruiter {
     @Column(name = "company_name")
     private String companyName;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "username")
     private String username;
 
