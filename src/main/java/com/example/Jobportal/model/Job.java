@@ -3,6 +3,7 @@ package com.example.Jobportal.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -62,7 +63,7 @@ public class Job {
     private LocalDate createAt;
 
     @Column(name = "active")
-    private Boolean active;
+    private String active;
 
     @ManyToOne
     @JsonManagedReference

@@ -22,6 +22,14 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
+          <el-alert
+              v-if="showDismissibleAlert"
+              dismissible
+              title="Your account is disable !"
+              type="error">
+          </el-alert>
+        </el-form-item>
+        <el-form-item>
           <el-button
               :loading="loading"
               class="login-button"
@@ -43,6 +51,7 @@ export default {
   path: '',
   data() {
     return {
+      showDismissibleAlert: false,
       message: '',
       validCredentials: {
         id: '',
@@ -80,24 +89,17 @@ export default {
     };
   },
   methods: {
-    simulateLogin() {
-      return new Promise(resolve => {
-        setTimeout(resolve, 800);
-      });
-    },
-    async login() {
-      // let valid = await this.$refs.form.validate();
-      // if (!valid) {
-      //   return;
-      // }
-      // this.loading = true;
-      // await this.simulateLogin();
-      // this.loading = false;
+     login() {
       axios.post('http://localhost:8080/login',this.model)
       .then((response) => {
         this.validCredentials = response.data.data
-        this.$store.dispatch("updateRecruiterId",this.validCredentials.id)
+        try {
+          this.$store.dispatch("updateRecruiterId",this.validCredentials.id)
+        }catch (e){
+          console.log(e)
+        }
         this.message = response.data.message
+        console.log(response)
         if(this.message === 'Login successfully !'){
           if(this.validCredentials.role==='recruiter'){
             this.path =''
@@ -108,7 +110,10 @@ export default {
             this.path = '/admin/home'
             this.$router.push(this.path)
           }
-        } else if (this.message === 'Username or password is wrong !') {
+        } else if (this.message === 'Your account is disable !') {
+          this.showDismissibleAlert = true
+        }
+        else if (this.message === 'Username or password is wrong !') {
           this.$message.error("Username or password is wrong !");
         }
 

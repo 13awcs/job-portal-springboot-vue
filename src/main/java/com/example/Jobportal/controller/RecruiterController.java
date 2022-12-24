@@ -4,9 +4,12 @@ import com.example.Jobportal.common.ResponseObject;
 import com.example.Jobportal.dto.LoginDto;
 import com.example.Jobportal.dto.RegisterDto;
 import com.example.Jobportal.dto.inputDto.RecruiterInput;
+import com.example.Jobportal.dto.outputDto.RecruiterResponse;
 import com.example.Jobportal.model.Recruiter;
 import com.example.Jobportal.repository.RecruiterRepository;
 import com.example.Jobportal.service.RecruiterService;
+import com.example.Jobportal.service.serviceImpl.RecruiterServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +21,14 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
+@RequiredArgsConstructor
 public class RecruiterController{
-    @Autowired
-    RecruiterService recruiterService;
 
-    @Autowired
-    RecruiterRepository recruiterRepository;
+    private  final RecruiterService recruiterService;
+
+    private final RecruiterServiceImpl recruiterServiceImpl;
+
+    private final  RecruiterRepository recruiterRepository;
 
 
     @PostMapping("/register")
@@ -49,10 +54,14 @@ public class RecruiterController{
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
             if (recruiter.getUsername().equalsIgnoreCase(loginDto.getUsername()) && encoder.matches(loginDto.getPassword(), recruiter.getPassword())) {
-                return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login successfully !",
-                        recruiterService.loadRecruiterByUsername(loginDto.getUsername())));
+                if(recruiter.getDisable().equals(new String("false"))) {
+                    return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login successfully !",
+                            recruiterService.loadRecruiterByUsername(loginDto.getUsername())));
+                }
+                else {
+                    return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Your account is disable !"));
+                }
             }
-
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseObject("Username or password is wrong !"));
 
@@ -66,6 +75,16 @@ public class RecruiterController{
     @PostMapping("/profile/edit")
     public ResponseEntity<Recruiter> editProfile(@RequestParam Long id, @RequestBody RecruiterInput recruiterInput){
         return ResponseEntity.status(HttpStatus.OK).body(recruiterService.editProfile(id,recruiterInput));
+    }
+
+    @GetMapping("/recruiter/{jobId}")
+    public ResponseEntity<ResponseObject> getRecruiterByJobId(@PathVariable Long  jobId){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(recruiterServiceImpl.getRecruiterByJobId(jobId)));
+    }
+
+    @PostMapping("/recruiter/{id}")
+    public ResponseEntity<ResponseObject> setDisable(@PathVariable Long  id, @RequestParam String disable){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(recruiterServiceImpl.setDisable(id,disable)));
     }
 
 }

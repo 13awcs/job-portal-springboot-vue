@@ -86,7 +86,6 @@
           </el-form>
           <span style="width: 30%; padding-left: 10px;">
             <el-image
-                :fit="cover"
                 :src="candidate.avatar"
                 style="width: 250px; height: 300px"></el-image>
           </span>

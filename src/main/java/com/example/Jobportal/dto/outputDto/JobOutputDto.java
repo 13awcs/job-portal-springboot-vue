@@ -1,6 +1,7 @@
 package com.example.Jobportal.dto.outputDto;
 
 import com.example.Jobportal.model.Job;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,8 @@ public class JobOutputDto {
     private Float salary;
     private String location;
     private String status;
+
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate createAt;
     private int applyAmount;
 }

@@ -1,15 +1,10 @@
 <template>
   <div class="center pad" v-loading="loading">
-    <div>
-
-    </div>
     <div class="pag">
         <b>Search</b>
         <el-input placeholder="Search student" v-model="search" @keyup.enter.native="searchFunc(search)"></el-input>
     </div>
-
     <div>
-
       <el-table
           :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.title.toLowerCase().includes(search.toLowerCase()))"
           style="width: 120%"
@@ -74,7 +69,6 @@
           </el-form>
           <span style="width: 30%; padding-left: 10px;">
             <el-image
-                :fit="cover"
                 :src="candidate.avatar"
                 style="width: 250px; height: 300px"></el-image>
           </span>
@@ -223,7 +217,7 @@ export default {
         this.centerDialogVisible = true
       }
       if (column.label === 'Job') {
-        this.jobDialogVisible = true
+
         axios.get('http://localhost:8080/jobs/job-by-apply-id/' + row.id)
             .then((response) => {
               console.log('response.data', response.data.data)
@@ -234,6 +228,7 @@ export default {
             .catch((e) => {
               this.error.push(e);
             })
+        this.jobDialogVisible = true
 
       }
     }

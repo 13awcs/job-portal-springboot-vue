@@ -112,8 +112,22 @@ public class JobServiceImpl implements JobService {
     }
 
     @Transactional
-    public String setActive(Long id,Boolean active){
+    public String setActive(Long id,String active){
         jobRepository.setActive(id,active);
         return "Set active successfully";
+    }
+
+    public List<JobResponse> getJobByActiveIsFalse() {
+        List<Job> jobs = jobRepository.getJobByActiveIsFalse();
+        List<JobResponse> list = new ArrayList<>();
+
+        if(jobs.isEmpty()){
+            new ResourceNotFoundException("No result !");
+        }
+        for(Job job : jobs) {
+            JobResponse jobResponse = JobResponse.fromEntity(job);
+            list.add(jobResponse);
+        }
+        return list;
     }
 }

@@ -2,27 +2,23 @@ package com.example.Jobportal.service.serviceImpl;
 
 import com.example.Jobportal.dto.RegisterDto;
 import com.example.Jobportal.dto.inputDto.RecruiterInput;
+import com.example.Jobportal.dto.outputDto.RecruiterResponse;
+import com.example.Jobportal.model.Job;
 import com.example.Jobportal.model.Recruiter;
+import com.example.Jobportal.repository.JobRepository;
 import com.example.Jobportal.repository.RecruiterRepository;
 import com.example.Jobportal.service.RecruiterService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RecruiterServiceImpl implements RecruiterService {
-
-    @Autowired
-    RecruiterRepository recruiterRepository;
-
-    PasswordEncoder passwordEncoder;
-
-    public RecruiterServiceImpl(RecruiterRepository recruiterRepository) {
-        this.recruiterRepository = recruiterRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
-
+    private final JobRepository jobRepository;
+    private final RecruiterRepository recruiterRepository;
     @Override
     public Recruiter registerRecruiter(RegisterDto registerDto) {
         Recruiter recruiter = new Recruiter();
@@ -50,5 +46,16 @@ public class RecruiterServiceImpl implements RecruiterService {
         recruiter.setCompanyName(recruiterInput.getCompanyName());
         recruiter.setId(id);
         return recruiterRepository.save(recruiter);
+    }
+
+    public RecruiterResponse getRecruiterByJobId(Long jobId){
+        Job job = jobRepository.findById(jobId).orElseThrow();
+        Recruiter recruiter = recruiterRepository.findById(job.getRecruiter().getId()).orElseThrow();
+        return RecruiterResponse.fromEntity(recruiter);
+    }
+
+    public String setDisable(Long id, String disable) {
+        recruiterRepository.setDisable(id,disable);
+        return "Set disable successfully";
     }
 }

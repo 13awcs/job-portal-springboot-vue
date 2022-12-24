@@ -55,6 +55,9 @@ public class Recruiter {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "disable")
+    private String disable = "false";
+
     @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL)
     @JsonBackReference
     @Fetch(value = FetchMode.SUBSELECT)
