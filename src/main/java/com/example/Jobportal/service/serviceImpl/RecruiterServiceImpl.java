@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,8 +55,11 @@ public class RecruiterServiceImpl implements RecruiterService {
         return RecruiterResponse.fromEntity(recruiter);
     }
 
+
+    @Transactional
     public String setDisable(Long id, String disable) {
-        recruiterRepository.setDisable(id,disable);
+        Job job = jobRepository.findById(id).orElseThrow();
+        recruiterRepository.setDisable(job.getRecruiter().getId(),disable);
         return "Set disable successfully";
     }
 }

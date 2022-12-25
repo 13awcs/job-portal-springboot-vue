@@ -77,6 +77,9 @@
         </div>
         <div slot="footer" class="dialog-footer">
           <el-button
+              @click="enable"
+              type="success">Enable</el-button>
+          <el-button
               @click="disable"
               type="danger">Disable</el-button>
           <el-button @click="centerDialogVisible = false">Cancel</el-button>
@@ -207,11 +210,19 @@ export default {
       console.log('count : ',this.tableData.length)
 
     },
-    disable(row) {
-
+    disable() {
+      axios.post('http://localhost:8080/recruiter/disable/'+this.form.id+'?disable=true')
+      console.log('vao day : ',this.form.id)
+      this.centerDialogVisible = false
+    },
+    enable(){
+      axios.post('http://localhost:8080/recruiter/disable/'+this.form.id+'?disable=false')
+      console.log('vao day : ',this.form.id)
+      this.centerDialogVisible = false
     },
     showInfoDialog(row, column, cell, event) {
       if (column.label === 'Recruiter') {
+        this.form.id = row.id
         axios.get('http://localhost:8080/recruiter/' + row.id)
             .then((response) => {
               console.log('response.data', response.data.data)
@@ -226,10 +237,8 @@ export default {
       if (column.label === 'Job') {
         axios.get('http://localhost:8080/jobs/' + row.id)
             .then((response) => {
-              console.log('hehe',response)
               console.log('response.data', response.data)
               this.job = response.data;
-              console.log('job : ', this.job)
               this.loading = false;
             })
             .catch((e) => {

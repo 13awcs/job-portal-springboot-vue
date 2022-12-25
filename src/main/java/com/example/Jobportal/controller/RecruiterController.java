@@ -82,9 +82,9 @@ public class RecruiterController{
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(recruiterServiceImpl.getRecruiterByJobId(jobId)));
     }
 
-    @PostMapping("/recruiter/{id}")
+    @PostMapping("/recruiter/disable/{id}")
     public ResponseEntity<ResponseObject> setDisable(@PathVariable Long  id, @RequestParam String disable){
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(recruiterServiceImpl.setDisable(id,disable)));
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Successfully",recruiterServiceImpl.setDisable(id,disable)));
     }
 
 }
