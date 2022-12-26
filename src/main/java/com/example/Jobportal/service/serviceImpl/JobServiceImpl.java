@@ -23,6 +23,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -129,5 +130,20 @@ public class JobServiceImpl implements JobService {
             list.add(jobResponse);
         }
         return list;
+    }
+
+    public List<Integer> countJobByMonthAndYear(int year){
+        List<Job> list = jobRepository.getAllJobIsActive().stream()
+                .filter(y -> y.getCreateAt().getYear() == year)
+                .collect(Collectors.toList());
+        List<Integer> countList = new ArrayList<>();
+        for (int i=1; i<=12;i++) {
+            int month = i;
+           Long count = list.stream()
+                    .filter(m -> m.getCreateAt().getMonth().getValue() == month)
+                    .count();
+           countList.add(count.intValue());
+        }
+        return countList;
     }
 }

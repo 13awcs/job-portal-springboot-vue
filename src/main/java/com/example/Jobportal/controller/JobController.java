@@ -76,4 +76,9 @@ public class JobController{
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(jobServiceImpl.getJobByActiveIsFalse()));
     }
 
+    @GetMapping("/admin/jobs/statistic")
+    public ResponseEntity<ResponseObject> countJobByMonth(@RequestParam int year){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Success",jobServiceImpl.countJobByMonthAndYear(year)));
+    }
+
 }

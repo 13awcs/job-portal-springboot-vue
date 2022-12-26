@@ -25,6 +25,102 @@ insert into job(title,category,amount,type,level,deadline,description,company_na
 values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-10-01','',3);
 insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
 values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-10-01','' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-10-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-10-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-10-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-02-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-02-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-10-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-10-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-10-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-06-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-06-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-10-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-11-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-10-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-11-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-11-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-08-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-10-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-10-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-06-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-05-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-04-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-03-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-04-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-03-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-03-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-01-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-01-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-12-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-11-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-07-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-10-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-05-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-07-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-05-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-05-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Java BE','BE',3,'Remote','Senior','2022-10-10','Implement application development using Java (Spring Framework, Hibernate) and other technologies for wide range of Enterprise Applications such as Salesforce, ServiceNow, Dell Boomi','Viettel',2500,'Ha Noi','available','2022-10-05','true' ,1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Frontend Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','Viettel',3000,'Hanoi','available','2022-09-01','true',1);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-10-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('DevOps','DevOps',3,'Remote','Junior','2022-10-10','Configuration of build/deployment pipelines to enable teams to do continuous integration and delivery','Fsoft',1000,'Hanoi','available','2022-08-01','true' ,2);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true' ,3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('ReactJs Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true',3);
+insert into job(title,category,amount,type,level,deadline,description,company_name,salary,location,status,create_at,active,recruiter_id)
+values ('Angular Dev','Front-end',3,'Hybrid','Senior','2022-10-10','Develop, maintain and release mobile apps for Android','VCCorp',3000,'Hanoi','available','2022-09-01','true' ,3);
+
+
 
 insert into apply(candidate_id,job_id,status,apply_date)
 values (1,1,'','2022-10-05');
@@ -37,11 +133,67 @@ values (2,2,'','2022-09-19');
 insert into apply(candidate_id,job_id,status,apply_date)
 values (3,2,'Accepted','2022-09-19');
 insert into apply(candidate_id,job_id,status,apply_date)
-values (1,4,'','2022-09-25');
+values (1,4,'','2022-10-25');
 insert into apply(candidate_id,job_id,status,apply_date)
 values (3,4,'Rejected','2022-09-25');
 insert into apply(candidate_id,job_id,status,apply_date)
-values (3,3,'','2022-09-25');
+values (3,3,'','2022-10-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,1,'','2022-10-05');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,2,'Accepted','2022-10-01');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,1,'','2022-05-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,2,'','2022-10-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,4,'Rejected','2022-09-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,1,'','2022-10-05');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,2,'Accepted','2022-08-01');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,1,'','2022-08-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,2,'','2022-07-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,2,'Accepted','2022-07-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,4,'','2022-06-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,4,'Rejected','2022-06-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,3,'','2022-05-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,1,'','2022-04-05');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,2,'Accepted','2022-03-01');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,1,'','2022-03-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,2,'','2022-02-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,2,'Accepted','2022-02-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,4,'','2022-01-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,4,'Rejected','2022-01-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,3,'','2022-12-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,1,'','2022-11-05');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,2,'Accepted','2022-10-01');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,1,'','2022-05-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (2,2,'','2022-10-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,2,'Accepted','2022-05-19');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (1,4,'','2022-10-25');
+insert into apply(candidate_id,job_id,status,apply_date)
+values (3,3,'','2022-10-25');
 
 
 

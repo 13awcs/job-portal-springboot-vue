@@ -1,5 +1,6 @@
 package com.example.Jobportal.repository;
 
+import com.example.Jobportal.dto.outputDto.JobResponse;
 import com.example.Jobportal.model.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,5 +19,8 @@ public interface JobRepository extends JpaRepository<Job,Long> {
     @Modifying
     @Query(value = "update job j set j.active = :active where j.id = :id",nativeQuery = true)
     void setActive(Long id,String active);
+
+    @Query(value = "select * from job j where j.active = 'true'",nativeQuery = true)
+    List<Job> getAllJobIsActive();
 
 }
