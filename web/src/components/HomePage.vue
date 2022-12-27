@@ -50,13 +50,18 @@
         </el-table-column>
         <el-table-column
             v-model="status"
-
             label="Status"
-            prop="status"
-        >
+            prop="status">
         </el-table-column>
-
       </el-table>
+      <el-pagination class="pagination"
+                     v-model="tableData"
+                     :current-page.sync="currentPage"
+                     background
+                     layout="prev, pager, next"
+                     :page-size="size"
+                     :total="totalElement">
+      </el-pagination>
     </div>
     <div>
       <el-dialog :model="candidate" :visible.sync="centerDialogVisible" title="Candidate information">
@@ -139,6 +144,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      currentPage: 0,
       centerDialogVisible: false,
       jobDialogVisible: false,
       status: '',
@@ -198,10 +204,38 @@ export default {
         this.loadData();
       }
     },
-
-
+    currentPage() {
+      if(this.value === ''){
+        this.clickPagination(this.currentPage-1)
+      } else {
+        this.clickPagination2(this.currentPage-1)
+      }
+    }
   },
   methods: {
+    clickPagination2(pageNum) {
+      axios.get('http://localhost:8080/applies/' + this.$store.state.recruiterId + '/search?status=' + this.value + '&page=' + pageNum)
+          .then((response) => {
+            this.tableData = response.data.content;
+
+            this.loading = false;
+          })
+          .catch((e) => {
+            this.error.push(e);
+          })
+    },
+    clickPagination(pageNum) {
+      axios.get('http://localhost:8080/applies/has-status/'+this.$store.state.recruiterId +'?page=' + pageNum)
+          .then((response) => {
+            console.log('response.data', response.data.content)
+            this.tableData = response.data.content;
+            this.loading = false;
+          })
+          .catch((e) => {
+            this.error.push(e);
+          })
+
+    },
     setColorStatus({row, rowIndex, columnIndex}) {
       if (columnIndex === 3 && row.status === 'Accepted') {
         return 'accept';
@@ -215,8 +249,10 @@ export default {
       console.log('recruiterId: ',this.$store.state.recruiterId)
       axios.get('http://localhost:8080/applies/has-status/'+this.$store.state.recruiterId)
           .then((response) => {
-            console.log('response.data', response.data.data)
-            this.tableData = response.data.data;
+            console.log('response.data', response.data.content)
+            this.tableData = response.data.content;
+            this.totalElement = response.data.totalElements;
+            this.size = response.data.size;
             this.loading = false;
           })
           .catch((e) => {
@@ -227,8 +263,8 @@ export default {
       this.loading = true;
       axios.get('http://localhost:8080/applies/has-no-status/'+this.$store.state.recruiterId)
           .then((response) => {
-            console.log('response.data', response.data.data)
-            this.valueBadge = response.data.data;
+            console.log('response.data', response.data.content)
+            this.valueBadge = response.data.content;
             this.$store.dispatch("updateNumberRow", this.valueBadge.length)
             this.loading = false;
           })
@@ -237,10 +273,12 @@ export default {
           })
     },
     select() {
-      axios.get('http://localhost:8080/applies/search?status=' + this.value)
+      axios.get('http://localhost:8080/applies/' + this.$store.state.recruiterId + '/search?status=' + this.value)
           .then((response) => {
-            console.log('response.data', response.data.data)
-            this.tableData = response.data.data;
+            console.log('response.data', response.data.content)
+            this.tableData = response.data.content;
+            this.totalElement = response.data.totalElements;
+            this.size = response.data.size;
             this.loading = false;
           })
           .catch((e) => {
@@ -292,6 +330,11 @@ export default {
   padding: 30px 0;
   width: 300px;
 
+}
+.pagination {
+  display: table;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .option {

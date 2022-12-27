@@ -1,0 +1,39 @@
+spring:
+  main:
+    allow-circular-references: 'true'
+  web:
+    locale: en
+    locale-resolver: fixed
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    generate-unique-name: 'false'
+    username: sa
+    url: jdbc:h2:mem:testdb;NON_KEYWORDS=USER
+  jpa:
+    defer-datasource-initialization: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: 'true'
+  h2:
+    console:
+      enabled: 'true'
+  messages:
+    fallback-to-system-locale: 'false'
+    basename: messages
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+logging:
+  level:
+    org:
+      hibernate:
+        type: ''

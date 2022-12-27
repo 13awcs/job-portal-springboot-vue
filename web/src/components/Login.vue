@@ -95,6 +95,8 @@ export default {
         this.validCredentials = response.data.data
         try {
           this.$store.dispatch("updateRecruiterId",this.validCredentials.id)
+          this.$store.dispatch("updateUserName",this.validCredentials.username)
+
         }catch (e){
           console.log(e)
         }

@@ -1,5 +1,6 @@
 package com.example.Jobportal.repository;
 
+import com.example.Jobportal.dto.response.TopJobResponse;
 import com.example.Jobportal.model.Apply;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,14 +39,23 @@ public interface ApplyRepository extends JpaRepository<Apply, Long> {
             "WHERE J.RECRUITER_ID = :recruiterId AND A.STATUS != ''",
             countQuery = "Select count(A.ID) " +
                     "FROM APPLY A JOIN JOB J ON A.JOB_ID = J.ID " +
-                    "WHERE J.RECRUITER_ID = :recruiterId AND A.STATUS != ''",
+                    "WHERE J.RECRUITER_ID = :recruiterId AND A.STATUS != '' ",
             nativeQuery = true)
     Page<Apply> getApplyHasStatusByRecruiterIdAndSortByDate(Long recruiterId, Pageable pageable);
 
-    @Query(value = "select * from apply p where p.status like :status", nativeQuery = true)
-    Page<Apply> searchApplyByStatus(String status, Pageable pageable);
+    @Query(value = "select p from Apply p join Job j on p.jobApply.id = j.id " +
+            "where j.recruiter.id = ?2 and p.status like concat('%',?1,'%') ")
+    Page<Apply> searchApplyByStatus(String status, Long id, Pageable pageable);
 
     @Modifying
     @Query(value = "update Apply p set p.status = :status where p.id = :id")
     void setStatus(Long id, String status);
+
+    @Query(value = "SELECT J.TITLE,R.NAME,J.CREATE_AT as createdAt, COUNT(A.ID) AS amount " +
+            "FROM APPLY A " +
+            "JOIN JOB J ON A.JOB_ID = J.ID " +
+            "JOIN RECRUITER R ON J.RECRUITER_ID = R.ID " +
+            "GROUP BY A.JOB_ID ",
+            nativeQuery = true)
+    Page<TopJobResponse> getTopJob(Pageable pageable);
 }

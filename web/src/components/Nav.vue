@@ -18,17 +18,20 @@
                  :class="currentPath === '/admin/job' ? 'active' : ''" class="navbar-brand" href="/admin/job">Jobs</a>
             </el-badge>
           </div>
+          <a class="username" v-if="(currentPath === '/home' || '/job' || '/recruiter' || '/admin/home' || '/admin/job') && currentPath !== '/' && currentPath !== '/login'">
+           {{ this.$store.state.username }}
+          </a>
           <div class="collapse navbar-collapse" style="justify-content: end;">
             <u class="navbar-nav ml-auto login-signup">
-              <li class="nav-item">
+              <li class="nav-item " >
                 <a v-if="(currentPath === '/' || '/login') && currentPath !== '/home' && currentPath !== '/job' && currentPath !== '/recruiter'
                     && currentPath !== '/candidate'&& currentPath !== '/admin/home'&& currentPath !== '/admin/job'"
                    :class=" hideBadge == true && currentPath === '/login' ? 'active' : ''" class="nav-link"
                    href="/login">Login</a>
-                <a v-if="(currentPath === '/home' || '/job' || '/recruiter' || '/admin/home' || '/admin/job') && currentPath !== '/' && currentPath !== '/login'"
-                   :class="hideBadge == true && currentPath === '/log-out' ? 'active' : ''" class="nav-link " style="cursor: pointer" @click="logOut">
-                  Logout
-                </a>
+                  <a v-if="(currentPath === '/home' || '/job' || '/recruiter' || '/admin/home' || '/admin/job') && currentPath !== '/' && currentPath !== '/login'"
+                     :class="hideBadge == true && currentPath === '/log-out' ? 'active' : ''" class="nav-link " style="cursor: pointer" @click="logOut">
+                    Logout
+                  </a>
               </li>
             </u>
           </div>
@@ -45,6 +48,7 @@ export default {
   components: {},
   data() {
     return {
+      username: '',
       path: '',
       disable: 'false'
     }
@@ -82,7 +86,6 @@ export default {
 .active {
   font-weight: bold;
 }
-
 .nav {
   background: #e7e7e7;
 }
@@ -90,7 +93,11 @@ export default {
 .pad {
   padding-left: 30px;
 }
-
+.username {
+  padding-left: 910px;
+  color: #990000;
+  font-style: italic;
+}
 .drop {
   font-weight: bold;
 }

@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         numberTableRows: 0,
         recruiterId: '',
+        username: '',
     },
     mutations: {
         updateNumberRow(state, data) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
         },
         updateRecruiterId(state,data) {
             state.recruiterId = data;
+        },
+        updateUserName(state,data) {
+            state.username = data;
         }
     },
     actions: {
@@ -22,6 +26,9 @@ export default new Vuex.Store({
         },
         updateRecruiterId(context,data) {
             context.commit("updateRecruiterId",data);
+        },
+        updateUserName(context,data) {
+            context.commit("updateUserName",data);
         }
     },
     plugins: [new VuexPersistence().plugin]

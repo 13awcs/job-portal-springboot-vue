@@ -39,6 +39,14 @@
         <el-table-column align="left">
         </el-table-column>
       </el-table>
+      <el-pagination class="pagination"
+                     v-model="tableData"
+                     :current-page.sync="currentPage"
+                     background
+                     layout="prev, pager, next"
+                     :page-size="size"
+                     :total="totalElement">
+      </el-pagination>
     </div>
 
     <div>
@@ -128,6 +136,7 @@ export default {
       loading: false,
       tableData: [],
       totalElement: 0,
+      size: 0,
       count: 0,
       error: [],
       search: '',
@@ -171,9 +180,9 @@ export default {
         this.loadData();
       }
     },
-    // currentPage() {
-    //   this.clickPagination(this.currentPage-1);
-    // }
+    currentPage() {
+      this.clickPagination(this.currentPage-1);
+    }
 
   },
   methods: {
@@ -181,14 +190,35 @@ export default {
       this.loading = true;
       axios.get('http://localhost:8080/applies/has-no-status/'+this.$store.state.recruiterId)
           .then((response) => {
-            console.log('response.data',response.data.data)
-            this.tableData = response.data.data;
-            this.$store.dispatch("updateNumberRow", this.tableData.length)
+            console.log('response.data',response.data.content)
+            this.tableData = response.data.content;
+            this.totalElement = response.data.totalElements;
+            this.size = response.data.size;
+            try {
+              this.$store.dispatch("updateNumberRow", this.tableData.length)
+            }catch (e){
+              console.log(e)
+            }
+            // console.log('chay den day')
+            // this.$store.dispatch("updateNumberRow", this.tableData.length)
+            // console.log('chay qua day')
             this.loading = false;
           })
           .catch((e) => {
             this.error.push(e);
           })
+    },
+    clickPagination(pageNum) {
+      axios.get('http://localhost:8080/applies/has-no-status/'+this.$store.state.recruiterId +'?page=' + pageNum)
+          .then((response) => {
+            console.log('response.data', response.data.content)
+            this.tableData = response.data.content;
+            this.loading = false;
+          })
+          .catch((e) => {
+            this.error.push(e);
+          })
+
     },
     accept(index,row) {
       axios.post('http://localhost:8080/applies/edit/'+row.id+'?status=Accepted')

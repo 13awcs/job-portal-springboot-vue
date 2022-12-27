@@ -87,4 +87,9 @@ public class RecruiterController{
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Successfully",recruiterServiceImpl.setDisable(id,disable)));
     }
 
+    @GetMapping("/recruiter/get-top")
+    public ResponseEntity<ResponseObject> getTopRecruiter(){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(recruiterServiceImpl.getTopRecruiter()));
+    }
+
 }

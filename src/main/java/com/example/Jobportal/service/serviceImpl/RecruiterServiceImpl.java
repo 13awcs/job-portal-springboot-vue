@@ -3,6 +3,7 @@ package com.example.Jobportal.service.serviceImpl;
 import com.example.Jobportal.dto.RegisterDto;
 import com.example.Jobportal.dto.inputDto.RecruiterInput;
 import com.example.Jobportal.dto.outputDto.RecruiterResponse;
+import com.example.Jobportal.dto.response.TopRecruiterResponse;
 import com.example.Jobportal.model.Job;
 import com.example.Jobportal.model.Recruiter;
 import com.example.Jobportal.repository.JobRepository;
@@ -14,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +64,9 @@ public class RecruiterServiceImpl implements RecruiterService {
         Job job = jobRepository.findById(id).orElseThrow();
         recruiterRepository.setDisable(job.getRecruiter().getId(),disable);
         return "Set disable successfully";
+    }
+
+    public List<TopRecruiterResponse> getTopRecruiter() {
+        return recruiterRepository.getTopRecruiter();
     }
 }

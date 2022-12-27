@@ -2,6 +2,7 @@ package com.example.Jobportal.controller;
 
 import com.example.Jobportal.common.ResponseObject;
 import com.example.Jobportal.dto.outputDto.ApplyOutputDto;
+import com.example.Jobportal.dto.response.TopJobResponse;
 import com.example.Jobportal.repository.ApplyRepository;
 import com.example.Jobportal.service.serviceImpl.ApplyServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -33,14 +34,15 @@ public class ApplyController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(applyRepository.getNewestApply()));
     }
 
-    @GetMapping("/applies/search")
+    @GetMapping("/applies/{id}/search")
     public ResponseEntity<Page<ApplyOutputDto>> searchApplyByStatus(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                                                                     @RequestParam(name = "size", required = false, defaultValue = "5") Integer size,
-                                                                    @RequestParam(name = "sortField", defaultValue = "APPLY_DATE") String sortField,
+                                                                    @RequestParam(name = "sortField", defaultValue = "applyDate") String sortField,
                                                                     @RequestParam(name = "sortDir", required = false, defaultValue = "ASC") Sort.Direction sortDir,
-                                                                    @RequestParam(value = "status") String status) {
+                                                                    @RequestParam(value = "status") String status,
+                                                                    @PathVariable Long id) {
         Pageable pageable = PageRequest.of(page, size, sortDir, sortField);
-        return ResponseEntity.ok(applyService.searchApplyByStatus(status, pageable));
+        return ResponseEntity.ok(applyService.searchApplyByStatus(status,id,pageable));
     }
 
     @GetMapping("/applies/has-status/{recruiterId}")
@@ -71,6 +73,13 @@ public class ApplyController {
     @GetMapping("/admin/apply/statistic")
     public ResponseEntity<ResponseObject> countApplyByMonth(@RequestParam int year) {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Success", applyService.countApplyByMonthAndYear(year)));
+    }
+
+    @GetMapping("/admin/apply/statistic/top-job")
+    public ResponseEntity<Page<TopJobResponse>> getTopJob(@RequestParam(name = "page", defaultValue = "0") Integer page,
+                                                          @RequestParam(name = "size", defaultValue = "5") Integer size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "amount"));
+        return ResponseEntity.ok(applyService.getTopJob(pageable));
     }
 
 }

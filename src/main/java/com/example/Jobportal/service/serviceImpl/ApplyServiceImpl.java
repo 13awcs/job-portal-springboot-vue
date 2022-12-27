@@ -1,6 +1,7 @@
 package com.example.Jobportal.service.serviceImpl;
 
 import com.example.Jobportal.dto.outputDto.ApplyOutputDto;
+import com.example.Jobportal.dto.response.TopJobResponse;
 import com.example.Jobportal.model.Apply;
 import com.example.Jobportal.model.Job;
 import com.example.Jobportal.repository.ApplyRepository;
@@ -42,8 +43,8 @@ public class ApplyServiceImpl implements ApplyService {
         return "Set status successfully";
     }
 
-    public Page<ApplyOutputDto> searchApplyByStatus(String status,Pageable pageable) {
-        return applyRepository.searchApplyByStatus(status,pageable).map(ApplyOutputDto::fromEntity);
+    public Page<ApplyOutputDto> searchApplyByStatus(String status,Long id,Pageable pageable) {
+        return applyRepository.searchApplyByStatus(status,id,pageable).map(ApplyOutputDto::fromEntity);
     }
 
     public List<Integer> countApplyByMonthAndYear(int year){
@@ -59,6 +60,10 @@ public class ApplyServiceImpl implements ApplyService {
             listApply.add(count.intValue());
         }
         return listApply;
+    }
+
+    public Page<TopJobResponse> getTopJob(Pageable pageable) {
+        return applyRepository.getTopJob(pageable);
     }
 
 }
