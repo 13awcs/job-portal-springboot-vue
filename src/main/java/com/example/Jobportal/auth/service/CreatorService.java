@@ -4,6 +4,8 @@ import com.example.Jobportal.auth.domain.RegistrationDto;
 import com.example.Jobportal.auth.domain.Role;
 import com.example.Jobportal.auth.domain.User;
 import com.example.Jobportal.auth.repository.UserRepository;
+import com.example.Jobportal.model.Recruiter;
+import com.example.Jobportal.repository.RecruiterRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class CreatorService {
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
+    private final RecruiterRepository recruiterRepository;
 
     private final RoleService roleService;
 
@@ -28,17 +31,17 @@ public class CreatorService {
         return userRepository.save(user);
     }
 
-    public User create(RegistrationDto request, List<Role> roles) {
-        User user = new User(request.name(), request.username(), passwordEncoder.encode(request.password()), roles);
-        save(user);
-        return user;
+    public User create(RegistrationDto request) {
+        Recruiter recruiter = recruiterRepository.findById(request.recruiterId()).orElseThrow();
+        User user = new User(request.username(), passwordEncoder.encode(request.password()),recruiter, request.role());
+        return save(user);
     }
 
-    public User create(RegistrationDto request) {
-        List<Role> roles = new ArrayList<>();
-        try {
-            roles.add(roleService.getByName(Role.ROLE_USER));
-        } catch (Exception ex) {}
-        return create(request, roles);
-    }
+//    public User create(RegistrationDto request) {
+//        List<Role> roles = new ArrayList<>();
+//        try {
+//            roles.add(roleService.getByName(Role.ROLE_ADMIN));
+//        } catch (Exception ex) {}
+//        return create(request, roles);
+//    }
 }

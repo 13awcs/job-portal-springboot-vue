@@ -20,9 +20,8 @@ public class JwtTokenUtil {
         Algorithm algorithm = Algorithm.HMAC512(jwtSecret.getBytes());
 
         List<String> authorities = new ArrayList<>();
-        user.getRoles().forEach(role -> {
-            authorities.add(role.getName());
-        });
+        authorities.add(user.getRole());
+
 
         return JWT.create()
                 .withSubject(String.format("%s,%s", user.getId(), user.getUsername()))

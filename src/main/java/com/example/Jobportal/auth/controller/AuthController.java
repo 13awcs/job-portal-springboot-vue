@@ -1,13 +1,10 @@
 package com.example.Jobportal.auth.controller;
 
-import com.example.Jobportal.auth.domain.LoginDto;
-import com.example.Jobportal.auth.domain.RegistrationDto;
-import com.example.Jobportal.auth.domain.User;
+import com.example.Jobportal.auth.domain.*;
 import com.example.Jobportal.auth.security.JwtTokenUtil;
 import com.example.Jobportal.auth.service.CreatorService;
 import com.example.Jobportal.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,7 +33,7 @@ public class AuthController {
     private final CreatorService creatorService;
 
     @PostMapping("login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody LoginDto request) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginDto request) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.username(), request.password());
         Authentication authentication = authenticationManager.authenticate(token);
 
@@ -46,11 +43,17 @@ public class AuthController {
         String accessToken = jwtTokenUtil.generateAccessToken(user);
         String refreshToken = jwtTokenUtil.generateRefreshToken(user);
 
-        Map<String, String> tokens = new HashMap<>();
-        tokens.put("access_token", accessToken);
-        tokens.put("refresh_token", refreshToken);
+        LoginResponse response = new LoginResponse(UserResponse.fromEntity(user),accessToken,refreshToken);
 
-        return ResponseEntity.ok().body(tokens);
+
+//        Map<String, String> tokens = new HashMap<>();
+//        tokens.put("access_token", accessToken);
+//        tokens.put("refresh_token", refreshToken);
+//
+//        Map<User,Map<String,String>> data = new HashMap<>();
+//        data.put(user,tokens);
+
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("refresh")
@@ -59,7 +62,8 @@ public class AuthController {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String refreshToken = authorizationHeader.substring("Bearer ".length());
             if (jwtTokenUtil.validate(refreshToken)) {
-                org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) userService.loadUserByUsername(jwtTokenUtil.getUserName(refreshToken));
+                org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User)
+                        userService.loadUserByUsername(jwtTokenUtil.getUserName(refreshToken));
                 User user = userService.getByUsername(userDetails.getUsername());
 
                 String accessToken = jwtTokenUtil.generateAccessToken(user);

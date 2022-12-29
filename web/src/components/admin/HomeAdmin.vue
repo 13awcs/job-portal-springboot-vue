@@ -168,7 +168,7 @@ export default {
           })
     },
     getTopRecruiter() {
-      axios.get('http://localhost:8080/recruiter/get-top')
+      axios.get('http://localhost:8080/admin/recruiter/get-top')
           .then((response) => {
             this.form = {
               first: 'Name',

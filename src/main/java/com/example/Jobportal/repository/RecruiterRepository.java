@@ -14,15 +14,15 @@ import java.util.Optional;
 
 @Repository
 public interface RecruiterRepository extends JpaRepository<Recruiter,Long> {
-    @Query(value = "select * from recruiter r where r.username = :username", nativeQuery = true)
-    Recruiter findByUsername(@Param("username") String username);
+//    @Query(value = "select * from recruiter r where r.username = :username", nativeQuery = true)
+//    Recruiter findByUsername(@Param("username") String username);
 
     @Modifying
     @Query(value = "update recruiter r set r.disable = :disable where r.id = :id",nativeQuery = true)
     void setDisable(Long id, String disable);
 
-    Boolean existsByUsername(String username);
-    Boolean existsByEmail(String email);
+//    Boolean existsByUsername(String username);
+//    Boolean existsByEmail(String email);
 
     @Query(value = "SELECT R.NAME, R.DOB, R.COMPANY_NAME AS COMPANY, COUNT(J.ID) AS AMOUNT " +
             "FROM RECRUITER R JOIN JOB J " +

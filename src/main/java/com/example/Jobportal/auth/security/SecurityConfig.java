@@ -36,6 +36,7 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http = http.cors().and().csrf().disable();
+        http.headers().frameOptions().disable();
 
         http = http
                 .sessionManagement()
@@ -54,8 +55,8 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/api/admin/**").hasAuthority(Role.ROLE_ADMIN)
-                .antMatchers("/api/admin/products").hasAuthority(Role.ROLE_ADMIN)
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/admin/**").hasAuthority(Role.ROLE_ADMIN)
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

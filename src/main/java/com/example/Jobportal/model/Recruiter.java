@@ -1,5 +1,6 @@
 package com.example.Jobportal.model;
 
+import com.example.Jobportal.auth.domain.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -46,17 +47,11 @@ public class Recruiter {
     @Column(name = "company_name")
     private String companyName;
 
-    @Column(name = "role")
-    private String role;
-
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "disable")
     private String disable = "false";
+
+    @OneToOne(mappedBy = "recruiter")
+    private User user;
 
     @OneToMany(mappedBy = "recruiter",cascade = CascadeType.ALL)
     @JsonBackReference

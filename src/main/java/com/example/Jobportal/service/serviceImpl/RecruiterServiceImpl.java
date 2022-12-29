@@ -25,20 +25,21 @@ public class RecruiterServiceImpl implements RecruiterService {
     private final RecruiterRepository recruiterRepository;
     @Override
     public Recruiter registerRecruiter(RegisterDto registerDto) {
-        Recruiter recruiter = new Recruiter();
-        recruiter.setUsername(registerDto.getUsername());
-        recruiter.setEmail(registerDto.getEmail());
-        //recruiter.setPassword(this.passwordEncoder.encode(registerDto.getPassword()));
-        recruiter.setPassword(registerDto.getPassword());
-        return recruiterRepository.save(recruiter);
+//        Recruiter recruiter = new Recruiter();
+//        recruiter.setUsername(registerDto.getUsername());
+//        recruiter.setEmail(registerDto.getEmail());
+//        //recruiter.setPassword(this.passwordEncoder.encode(registerDto.getPassword()));
+//        recruiter.setPassword(registerDto.getPassword());
+//        return recruiterRepository.save(recruiter);
+        return null;
     }
 
     @Override
     public Recruiter loadRecruiterByUsername(String username) {
-        Recruiter recruiter = recruiterRepository.findByUsername(username);
-        return recruiter;
+//        Recruiter recruiter = recruiterRepository.findByUsername(username);
+//        return recruiter;
 //        Recruiter recruiter = recruiterRepository.
-
+            return  null;
     }
 
     @Override

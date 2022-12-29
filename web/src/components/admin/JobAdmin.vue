@@ -199,31 +199,31 @@ export default {
           })
     },
     accept(index,row) {
-      axios.post('http://localhost:8080/jobs/set-active/'+row.id+'?active=true')
+      axios.post('http://localhost:8080/admin/jobs/set-active/'+row.id+'?active=true')
       this.tableData.splice(index, 1)
       console.log('count : ',this.tableData.length)
     },
 
     reject(index,row) {
-      axios.post('http://localhost:8080/jobs/set-active/'+row.id+'?active=false')
+      axios.post('http://localhost:8080/admin/jobs/set-active/'+row.id+'?active=false')
       this.tableData.splice(index, 1)
       console.log('count : ',this.tableData.length)
 
     },
     disable() {
-      axios.post('http://localhost:8080/recruiter/disable/'+this.form.id+'?disable=true')
+      axios.post('http://localhost:8080/admin//disable-recruiter/'+this.form.id+'?disable=true')
       console.log('vao day : ',this.form.id)
       this.centerDialogVisible = false
     },
     enable(){
-      axios.post('http://localhost:8080/recruiter/disable/'+this.form.id+'?disable=false')
+      axios.post('http://localhost:8080/admin/disable-recruiter/'+this.form.id+'?disable=false')
       console.log('vao day : ',this.form.id)
       this.centerDialogVisible = false
     },
     showInfoDialog(row, column, cell, event) {
       if (column.label === 'Recruiter') {
         this.form.id = row.id
-        axios.get('http://localhost:8080/recruiter/' + row.id)
+        axios.get('http://localhost:8080/admin/recruiter/' + row.id)
             .then((response) => {
               console.log('response.data', response.data.data)
               this.recruiter = response.data.data;
