@@ -91,7 +91,7 @@ public class JobServiceImpl implements JobService {
             new ResourceNotFoundException("No result !");
         }
         for(Job job : jobs){
-            int applyAmount = applyRepository.countApply(job.getId());
+            int applyAmount = applyRepository.countApply(job.getId()); //todo: n + 1 problems
             JobOutputDto jobOutputDto = JobMapping.jobInputToOutput(job);
             jobOutputDto.setApplyAmount(applyAmount);
             jobOutputDtos.add(jobOutputDto);
@@ -102,7 +102,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job getDetailJob(Long id) {
-        Job job = jobRepository.findById(id).orElseThrow();
+        Job job = jobRepository.findById(id).orElseThrow(); //todo: check this
         return job;
     }
 
@@ -132,6 +132,7 @@ public class JobServiceImpl implements JobService {
         return list;
     }
 
+    //todo: count in DB instead of server
     public List<Integer> countJobByMonthAndYear(int year){
         List<Job> list = jobRepository.getAllJobIsActive().stream()
                 .filter(y -> y.getCreateAt().getYear() == year)

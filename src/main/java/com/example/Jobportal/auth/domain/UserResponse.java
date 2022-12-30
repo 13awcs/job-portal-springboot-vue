@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-public class UserResponse {
+public class UserResponse { //todo: split to other package for clean architecture
     private Long recruiterId;
     private String username;
     private String name;

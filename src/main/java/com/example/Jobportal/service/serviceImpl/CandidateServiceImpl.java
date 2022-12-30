@@ -13,7 +13,7 @@ public class CandidateServiceImpl {
     private final ApplyRepository applyRepository;
 
     public CandidateOutputDto getCandidateByApplyId(Long applyId) {
-        Apply apply = applyRepository.findById(applyId).orElseThrow();
+        Apply apply = applyRepository.findById(applyId).orElseThrow(); //todo: throw what? must handle carefully
         Candidate candidate = apply.getCandidateApply();
         return CandidateOutputDto.fromEntity(candidate);
     }

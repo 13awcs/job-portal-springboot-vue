@@ -13,6 +13,7 @@ import java.util.List;
 @Component
 public class JwtTokenUtil {
 
+    //todo: move this to application.yml to make it dynamic in multiple env
     private final String jwtSecret = "CctlD5JL16m8wLTgsFNhzqjQP";
     private final String jwtIssuer = "coder4.life";
 
@@ -27,7 +28,7 @@ public class JwtTokenUtil {
                 .withSubject(String.format("%s,%s", user.getId(), user.getUsername()))
                 .withIssuer(jwtIssuer)
                 .withClaim("roles", authorities)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 5 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 5 * 60 * 1000)) //todo: how long is this, should declare contants with clear name
                 .sign(algorithm);
     }
 
@@ -48,7 +49,7 @@ public class JwtTokenUtil {
             if (expiresAt >= cal.getTime().getTime()) {
                 return true;
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) { //todo: use logger
             System.out.println(String.format("JWT is invalid - {%s}", e.getMessage()));
         }
 

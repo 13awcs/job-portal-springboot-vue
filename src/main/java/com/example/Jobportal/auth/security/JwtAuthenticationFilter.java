@@ -41,12 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        //todo: what if this is null?
         UserDetails userDetails = userService.loadUserByUsername(jwtTokenUtil.getUserName(token));
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 userDetails,
                 null,
-                Optional.ofNullable(userDetails).map(UserDetails::getAuthorities).orElse(List.of())
+                Optional.ofNullable(userDetails).map(UserDetails::getAuthorities).orElse(List.of()) //todo: why not use: userDetails.getAuthorities()
         );
 
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

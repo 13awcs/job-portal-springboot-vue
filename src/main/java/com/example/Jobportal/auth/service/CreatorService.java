@@ -19,12 +19,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CreatorService {
+public class CreatorService { //todo: move to UserService
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
     private final RecruiterRepository recruiterRepository;
 
+    //todo: remove this
     private final RoleService roleService;
 
     public final User save(User user) {
@@ -32,9 +33,9 @@ public class CreatorService {
     }
 
     public User create(RegistrationDto request) {
-        Recruiter recruiter = recruiterRepository.findById(request.recruiterId()).orElseThrow();
+        Recruiter recruiter = recruiterRepository.findById(request.recruiterId()).orElseThrow(); //todo: throw what? need to handle this
         User user = new User(request.username(), passwordEncoder.encode(request.password()),recruiter, request.role());
-        return save(user);
+        return save(user); //todo: what will occur if 2 user have same name
     }
 
 //    public User create(RegistrationDto request) {

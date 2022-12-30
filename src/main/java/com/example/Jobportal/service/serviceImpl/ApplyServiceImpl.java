@@ -29,6 +29,7 @@ public class ApplyServiceImpl implements ApplyService {
     private final ApplyRepository applyRepository;
 
     public Page<ApplyOutputDto> getApplyHasStatusByRecruiterIdAndSortByDate(Long recruiterId,Pageable pageable) {
+        //todo: return immediately
         Page<ApplyOutputDto> applies = applyRepository.getApplyHasStatusByRecruiterIdAndSortByDate(recruiterId,pageable).map(ApplyOutputDto::fromEntity);
         return applies;
     }
@@ -37,6 +38,7 @@ public class ApplyServiceImpl implements ApplyService {
         return applyRepository.getApplyHasNoStatusByRecruiterIdAndSortByDate(recruiterId,pageable).map(ApplyOutputDto::fromEntity);
     }
 
+    //todo: should check if id exists and return true/false in case success/false
     @Transactional
     public String setStatus(Long id,String status) {
         applyRepository.setStatus(id,status);
@@ -47,6 +49,8 @@ public class ApplyServiceImpl implements ApplyService {
         return applyRepository.searchApplyByStatus(status,id,pageable).map(ApplyOutputDto::fromEntity);
     }
 
+
+    //todo: must count in db because getting all to server consuming a lot memory
     public List<Integer> countApplyByMonthAndYear(int year){
         List<Apply> list = applyRepository.findAll().stream()
                 .filter(y -> y.getApplyDate().getYear() == year)

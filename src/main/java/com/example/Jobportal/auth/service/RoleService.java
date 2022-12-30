@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleService {
 
+    //todo: use constructor injection with lombok
     @Autowired
     private RoleRepository roleRepository;
 
